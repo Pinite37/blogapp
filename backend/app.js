@@ -2,6 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+
+const authRoutes = require("./routes/auth.route");
+const blogRoutes = require("./routes/blog.route");
+const userRoutes = require("./routes/user.route");
+
 dotenv.config();
 
 
@@ -9,6 +14,10 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/blogs', blogRoutes);
+app.use('/api/users', userRoutes);
 
 
 app.use((error, req, res, next) => {
