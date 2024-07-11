@@ -46,7 +46,6 @@ const updateBlog = async (req, res, next) => {
 
 const deleteBlog = async (req, res, next) => {
     try {
-      console.log("Delete blog endpoint reached");
       const blogId = req.params.id;
       await blogService.deleteBlog(blogId);
       res.status(200).json({ message: 'Blog deleted successfully' });

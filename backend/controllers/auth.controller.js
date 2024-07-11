@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const generateToken = require("../utils/generateJWT");
 const authService = require("../services/auth.service");
 
 const registerUser = async (req, res, next) => {
@@ -27,7 +26,7 @@ const registerAdmin = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await authService.createAdmin({ username, email, password: hashedPassword, role: "admin" });
+        const newAdmin = await authService.createUser({ username, email, password: hashedPassword, role: "admin" });
         res.status(201).json({ message: "Admin created successfully", admin: newAdmin });
     } catch (error) {
         next(error);
